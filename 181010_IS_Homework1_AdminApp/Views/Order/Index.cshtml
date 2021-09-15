@@ -8,7 +8,7 @@
 @model List<_181010_IS_Homework1_AdminApp.Models.Order>
 
 <div class="row">
-    <a class="btn btn-outline-success" asp-controller="Order" asp-action="ExportAllOrders">Export Orders</a>
+    <a class="btn btn-outline-success" asp-controller="Order" asp-action="ExportAllOrders" id="export-orders">Export Orders</a>
     <br />
 </div>
 
@@ -37,8 +37,8 @@
                     <td>@(i+1)</td>
                     <td>@item.OrderedBy.Name @item.OrderedBy.Surname</td>
                     <td>@item.Tickets.ToList().Count()</td>
-                    <td><a asp-route-orderId="@item.Id" asp-action="Details" class="btn btn-info">View Order</a></td>
-                    <td><a asp-route-orderId="@item.Id" asp-action="CreateInvoice" class="btn btn-info">Get Invoice</a></td>
+                    <td><a asp-route-orderId="@item.Id" asp-action="Details" class="btn btn-info" id="view-order">View Order</a></td>
+                    <td><a asp-route-orderId="@item.Id" asp-action="CreateInvoice" class="btn btn-info" id="get-invoice">Get Invoice</a></td>
                 </tr>
             }
         }

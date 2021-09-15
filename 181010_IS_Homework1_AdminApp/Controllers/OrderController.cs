@@ -28,6 +28,10 @@ namespace _181010_IS_Homework1_AdminApp.Controllers
 
             HttpResponseMessage response = client.GetAsync(URL).Result;
 
+            //dodadeno petar
+            if (response.IsSuccessStatusCode == false)
+                throw new ArgumentException("Could not retrieve tasks.");
+
             //var data = await response.Content.ReadAsAsync<List<Order>>();
             var stream = response.Content.ReadAsStreamAsync().Result; 
             StreamReader reader = new StreamReader(stream); 
@@ -61,7 +65,7 @@ namespace _181010_IS_Homework1_AdminApp.Controllers
         [HttpGet]
         public FileContentResult ExportAllOrders()
         {
-            string fileName = "Orders.xlsx";
+          // string fileName = "Orders1.xlsx";
             string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
             using(var workbook = new XLWorkbook())
@@ -102,7 +106,7 @@ namespace _181010_IS_Homework1_AdminApp.Controllers
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
 
-                    return File(content, contentType, fileName); // defined at the beginning of the function
+                    return File(content, contentType, "Orders.xlsx"); // defined at the beginning of the function
                 }
 
             }
@@ -124,6 +128,8 @@ namespace _181010_IS_Homework1_AdminApp.Controllers
             HttpContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = client.PostAsync(URL, content).Result;
+
+            
 
             //getting the app's response 
             var data = response.Content.ReadAsAsync<Order>().Result;

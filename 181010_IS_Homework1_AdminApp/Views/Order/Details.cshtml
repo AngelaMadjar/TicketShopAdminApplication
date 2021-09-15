@@ -9,7 +9,7 @@
 <div class="container">
 
     <p>
-        <a class="btn btn-success">Order for: @Model.OrderedBy.Name @Model.OrderedBy.Surname</a>
+        <a class="btn btn-success" id="order-for">Order for: @Model.OrderedBy.Name @Model.OrderedBy.Surname</a>
     </p>
 
     @for (int i = 0; i < Model.Tickets.Count(); i++)
